@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>How Our Enquiry Forms Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: single centred sheet, Edusport house style (topbar, navy hero, green leadstrip, numbered sections) */
+  :root{
+    --navy:#034EA1;
+    --navy-dark:#023D80;
+    --green:#009040;
+    --green-light:#e8f6ee;
+    --amber:#f2a900;
+    --amber-light:#fff6e1;
+    --ink:#1c2430;
+    --grey:#5b6472;
+    --line:#e3e7ee;
+    --paper:#ffffff;
+    --bg:#eef1f6;
+    --tint:#f5f7fb;
+    --blue-light:#eaf2fc;
+    --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+    --body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box;}
+  html,body{background:var(--bg);}
+  body{margin:0; color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.6; padding-inline:16px; padding-block:24px;}
+  .page{max-width:1000px; margin:0 auto; background:var(--paper); border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(20,30,60,.12);}
+  .topbar{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 28px; background:var(--paper); border-bottom:1px solid var(--line);}
+  .topbar img{height:44px; width:auto; display:block;}
+  .print-btn{background:var(--navy); color:#fff; border:none; padding:9px 16px; border-radius:999px; font:700 12px/1 var(--body); cursor:pointer; white-space:nowrap;}
+  .print-btn:hover{background:var(--navy-dark);}
+  .print-btn:focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
+  html.framed .print-btn{display:none;}
+  .hero{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-dark) 100%); color:#fff; padding:36px 28px 30px;}
+  .eyebrow{font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:#bcd4f2; font-weight:700; margin-bottom:8px;}
+  .hero h1{font-family:var(--display); font-weight:800; font-size:44px; line-height:1.05; margin:0 0 12px; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance;}
+  .hero h1 .accent{color:#5ee0a0;}
+  .hero p{margin:0; color:#dbe7f7; max-width:680px;}
+  .leadstrip{background:var(--green); color:#fff; padding:12px 28px; font-size:14px; font-weight:600;}
+  .body{padding:30px 28px 40px;}
+  nav.jump{background:var(--green-light); border:1px solid #cdeedb; border-radius:12px; padding:16px 20px; margin:0 0 32px;}
+  nav.jump h3{margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--green);}
+  nav.jump ol{margin:0; padding-left:20px; columns:2; column-gap:28px; font-size:14px;}
+  nav.jump li{margin-bottom:4px; break-inside:avoid;}
+  nav.jump a{color:var(--navy); text-decoration:none;}
+  nav.jump a:hover{text-decoration:underline;}
+  section{margin:0 0 38px; scroll-margin-top:16px;}
+  h2{font-family:var(--display); font-weight:700; font-size:28px; line-height:1.15; color:var(--navy); margin:0 0 4px; border-bottom:2px solid var(--line); padding-bottom:8px; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance;}
+  h2 .num{color:var(--green); margin-right:10px;}
+  h3{color:var(--navy); font-size:16px; margin:22px 0 6px;}
+  .sub{color:var(--grey); font-size:14px; margin:6px 0 16px;}
+  p{margin:0 0 12px; max-width:72ch;}
+  .backtop{display:inline-block; font-size:12px; color:var(--navy); text-decoration:none; margin-top:8px;}
+  .backtop:hover{text-decoration:underline;}
+  .callout{border-radius:12px; padding:16px 18px; margin:16px 0; font-size:14px;}
+  .callout strong.t{display:block; margin-bottom:4px; color:var(--navy);}
+  .callout.info{background:var(--blue-light); border:1px solid #cfe0f7;}
+  .callout.warn{background:var(--amber-light); border:1px solid #f3ddad;}
+  .callout.warn strong.t{color:#8a5f00;}
+  .callout.good{background:var(--green-light); border:1px solid #cdeedb;}
+  .callout.good strong.t{color:var(--green);}
+  .callout p{margin:0;}
+  .tablewrap{overflow-x:auto; margin:10px 0; border:1px solid var(--line); border-radius:10px;}
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  th{background:var(--tint); color:var(--navy); font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap;}
+  td.q{font-weight:600; color:var(--ink);}
+  .pill{display:inline-block; padding:2px 9px; border-radius:999px; font-size:11.5px; font-weight:700; white-space:nowrap; margin:1px 2px 1px 0;}
+  .pill.fresh{background:var(--green-light); color:var(--green); border:1px solid #cdeedb;}
+  .pill.udms{background:var(--blue-light); color:var(--navy); border:1px solid #cfe0f7;}
+  .pill.rwc{background:var(--amber-light); color:#8a5f00; border:1px solid #f3ddad;}
+  .muted{color:var(--grey);}
+  .matrix td, .matrix th{text-align:center;}
+  .matrix td:first-child, .matrix th:first-child{text-align:left;}
+  .yes{color:var(--green); font-weight:700;}
+  .no{color:#a8b0bc;}
+  .rules{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; margin:12px 0;}
+  .rule{background:var(--tint); border:1px solid var(--line); border-radius:12px; padding:14px 16px; min-width:0;}
+  .rule b{display:block; font-family:var(--display); font-size:19px; text-transform:uppercase; color:var(--navy); letter-spacing:.02em; margin-bottom:2px;}
+  .rule span{font-size:13.5px; color:var(--ink);}
+  .steps{list-style:none; margin:14px 0; padding:0; display:grid; gap:10px;}
+  .steps li{display:grid; grid-template-columns:44px 1fr; gap:12px; align-items:start; background:var(--tint); border:1px solid var(--line); border-radius:12px; padding:14px 16px;}
+  .steps .n{font-family:var(--display); font-weight:800; font-size:26px; color:var(--green); line-height:1;}
+  .steps .c{min-width:0; font-size:14px;}
+  .steps .c b{display:block; color:var(--navy);}
+  .outcomes{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; margin:12px 0;}
+  .outcome{border-radius:12px; padding:16px 18px; font-size:14px; min-width:0;}
+  .outcome.a{background:var(--green-light); border:1px solid #cdeedb;}
+  .outcome.b{background:var(--amber-light); border:1px solid #f3ddad;}
+  .outcome h4{margin:0 0 8px; font-family:var(--display); font-size:20px; text-transform:uppercase; letter-spacing:.02em;}
+  .outcome.a h4{color:var(--green);}
+  .outcome.b h4{color:#8a5f00;}
+  .outcome ul{margin:0; padding-left:18px;}
+  .sports{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; margin:12px 0;}
+  .sport{border:1px solid var(--line); border-radius:12px; padding:14px 16px; min-width:0;}
+  .sport h4{margin:0 0 8px; font-family:var(--display); font-size:19px; text-transform:uppercase; letter-spacing:.02em; color:var(--navy); display:flex; justify-content:space-between; align-items:baseline; gap:8px;}
+  .sport h4 small{font-family:var(--body); font-size:11.5px; color:var(--grey); text-transform:none; letter-spacing:0; font-weight:600; font-variant-numeric:tabular-nums;}
+  .chips{display:flex; flex-wrap:wrap; gap:5px;}
+  .chip{font-size:12px; background:var(--tint); border:1px solid var(--line); border-radius:6px; padding:2px 8px;}
+  .faq{display:grid; gap:10px; margin:12px 0;}
+  .faq details{border:1px solid var(--line); border-radius:12px; padding:0 16px; background:var(--paper);}
+  .faq summary{cursor:pointer; padding:14px 0; font-weight:600; color:var(--navy); list-style-position:outside;}
+  .faq summary:focus-visible{outline:3px solid var(--amber); outline-offset:2px; border-radius:6px;}
+  .faq details[open] summary{border-bottom:1px solid var(--line); margin-bottom:10px;}
+  .faq details p{font-size:14px;}
+  footer{background:var(--tint); padding:18px 28px; text-align:center; font-size:12px; color:var(--grey); border-top:1px solid var(--line);}
+  @media (max-width:640px){
+    .topbar,.hero,.leadstrip,.body,footer{padding-left:18px; padding-right:18px;}
+    .hero h1{font-size:34px;}
+    nav.jump ol{columns:1;}
+    body{padding-inline:10px;}
+  }
+  @media print{
+    html,body{background:#fff;}
+    body{padding:0;}
+    .page{box-shadow:none; border-radius:0;}
+    .print-btn,nav.jump,.backtop{display:none;}
+    .faq details{break-inside:avoid;}
+    section{break-inside:auto;}
+    .sport,.rule,.outcome,.steps li{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="page" id="top">
+
+  <div class="topbar">
+    <img src="data:image/webp;base64,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" alt="Edusport Travel and Tours">
+    <button class="print-btn" type="button" onclick="window.print()">Print / Save PDF</button>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Sales Team Reference · Website Enquiries</div>
+    <h1>How our <span class="accent">enquiry forms</span> work</h1>
+    <p>There are five enquiry forms on the Edusport website. Each one is built for a specific job, asks specific questions, and sends its information to a specific place. This guide explains what each form does and why.</p>
+  </div>
+
+  <div class="leadstrip">Check this guide first whenever an enquiry looks different to what you expected.</div>
+
+  <div class="body">
+
+    <nav class="jump" aria-label="Sections">
+      <h3>Jump to a section</h3>
+      <ol>
+        <li><a href="#glance">The five forms at a glance</a></li>
+        <li><a href="#rules">Rules every form follows</a></li>
+        <li><a href="#general">General Enquiry form</a></li>
+        <li><a href="#event">Event Page form</a></li>
+        <li><a href="#package">Package Enquiry form</a></li>
+        <li><a href="#rwc">RWC 2027 Quote Me form</a></li>
+        <li><a href="#waitlist">Waitlist form</a></li>
+        <li><a href="#compare">Question by question</a></li>
+        <li><a href="#options">Sport and event options</a></li>
+        <li><a href="#faq">Quick answers</a></li>
+      </ol>
+    </nav>
+
+    <section id="glance">
+      <h2><span class="num">01</span>The five forms at a glance</h2>
+      <p class="sub">Which form the client fills in depends on where they are on the website</p>
+      <div class="tablewrap">
+        <table>
+          <tr><th>Form</th><th>Where the client finds it</th><th>Sends to</th><th>What comes through automatically</th></tr>
+          <tr>
+            <td class="q">General Enquiry</td>
+            <td>Top navigation, on every page</td>
+            <td><span class="pill fresh">Freshsales</span></td>
+            <td>Nothing. The form is not linked to an event or package, so the client chooses their sport and event and gives their own dates.</td>
+          </tr>
+          <tr>
+            <td class="q">Event Page</td>
+            <td>On each event page</td>
+            <td><span class="pill fresh">Freshsales</span></td>
+            <td>Sport and event are preselected from the page. The event dates are sent to Fresh without the client having to pick them.</td>
+          </tr>
+          <tr>
+            <td class="q">Package Enquiry</td>
+            <td>On package pages (main package or a rate band). All packages <strong>except</strong> RWC.</td>
+            <td><span class="pill fresh">Freshsales</span></td>
+            <td>Package dates, package name and URL, sport type and event, all sent as hidden fields.</td>
+          </tr>
+          <tr>
+            <td class="q">Package Quote Me <span class="pill rwc">RWC 2027 only</span></td>
+            <td>On RWC 2027 package pages only (main package or a rate band)</td>
+            <td><span class="pill fresh">Freshsales</span><span class="pill udms">UDMS</span></td>
+            <td>Package dates as hidden fields. UDMS creates the quote and sends it to the client.</td>
+          </tr>
+          <tr>
+            <td class="q">Waitlist</td>
+            <td>For events on a waitlist</td>
+            <td><span class="pill fresh">Freshsales</span></td>
+            <td>Number of travellers and event name. <strong>No dates.</strong> Goes straight to Waitlist, not New.</td>
+          </tr>
+        </table>
+      </div>
+      <div class="callout info">
+        <strong class="t">Why the forms are different</strong>
+        <p>The more the website already knows about what the client is looking at, the fewer questions the form needs to ask. A client on a package page doesn't need to tell us the package or the dates, because the page already knows. A client using the General form could be interested in anything, so that form has to ask.</p>
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="rules">
+      <h2><span class="num">02</span>Rules every form follows</h2>
+      <p class="sub">These are deliberate and apply across the enquiry forms</p>
+      <div class="rules">
+        <div class="rule"><b>Yes / No starts blank</b><span>No answer is pre-ticked. The client has to choose, so what lands in Fresh is a real answer, not a default.</span></div>
+        <div class="rule"><b>Travellers: 0 to 1,000</b><span>The traveller count can't go below zero or above 1,000.</span></div>
+        <div class="rule"><b>Comments box on every form</b><span>"Any further requests?" is on all forms, so the client always has space to add detail.</span></div>
+        <div class="rule"><b>Marketing data comes with it</b><span>Website marketing data (via Google Tag Manager) comes into Fresh with every submission.</span></div>
+        <div class="rule"><b>Marketing preference</b><span>The client can opt in to marketing by email, WhatsApp and/or SMS.</span></div>
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="general">
+      <h2><span class="num">03</span>General Enquiry form</h2>
+      <p class="sub">Top navigation · sends to Freshsales only</p>
+      <p>This is the catch-all form. Because it isn't linked to an event or a package, it has to ask the qualifying questions about dates and flights. Without them, we'd have nothing to quote from.</p>
+      <div class="tablewrap">
+        <table>
+          <tr><th>Question</th><th>How the client answers</th><th>Sends to</th></tr>
+          <tr><td class="q">First name, Last name, Email, Phone</td><td>Typed in</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">What sport are you interested in?</td><td>Chosen from the sport list</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">What sport event are you interested in?</td><td>Chosen from the events for that sport (see <a href="#options">section 09</a>)</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Do you have a departure date in mind?</td><td>Client enters their own date</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Do you have a return travel date in mind?</td><td>Client enters their own date</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">How many travellers in your party?</td><td>Number, 0 to 1,000</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Do you need flights?</td><td>Yes / No</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Any further requests?</td><td>Comments box</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Have you travelled with us before?</td><td>Yes / No</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Are you a travel agent?</td><td>Yes / No</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Marketing communication preference</td><td>Email, WhatsApp, SMS</td><td><span class="pill fresh">Fresh</span></td></tr>
+        </table>
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="event">
+      <h2><span class="num">04</span>Event Page form</h2>
+      <p class="sub">On each event page · sends to Freshsales only</p>
+      <p>Same questions as the General form, with two differences that save the client time:</p>
+      <ul>
+        <li><strong>Sport and event are preselected</strong> based on the event page the client is on.</li>
+        <li><strong>The event dates are sent to Fresh automatically.</strong> The client still tells us their own departure and return dates, so you get both: when the event is on, and when they want to travel.</li>
+      </ul>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="package">
+      <h2><span class="num">05</span>Package Enquiry form</h2>
+      <p class="sub">On package pages · all packages except RWC · sends to Freshsales only</p>
+      <p>This form is an enquiry form only. It does not create a quote. The client doesn't see a sport or event question, because the page already knows the package. These come through to Fresh as hidden fields:</p>
+      <div class="rules">
+        <div class="rule"><b>Package dates</b><span>Pulled from the package, no need for the client to select them.</span></div>
+        <div class="rule"><b>Package name &amp; URL</b><span>So you can see exactly which package the client was looking at.</span></div>
+        <div class="rule"><b>Sport type &amp; event</b><span>Sent as hidden, associated fields.</span></div>
+      </div>
+      <p>The client then answers: departure and return dates in mind, number of travellers, flights, further requests, travelled with us before, travel agent, and marketing preference.</p>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="rwc">
+      <h2><span class="num">06</span>RWC 2027 Quote Me form</h2>
+      <p class="sub">RWC 2027 packages only · sends to Freshsales and UDMS</p>
+      <div class="callout warn">
+        <strong class="t">This form is tagged only to RWC 2027 packages</strong>
+        <p>Every other package uses the Package Enquiry form. The Quote Me form works differently because it creates and sends a quote in UDMS before the enquiry reaches Fresh.</p>
+      </div>
+
+      <h3>What the client fills in</h3>
+      <div class="tablewrap">
+        <table>
+          <tr><th>Question</th><th>Notes</th><th>Sends to</th></tr>
+          <tr><td class="q">Title</td><td>Needed for the UDMS quote</td><td><span class="pill udms">UDMS only</span></td></tr>
+          <tr><td class="q">First name, Last name, Email, Phone</td><td>Typed in</td><td><span class="pill fresh">Fresh</span><span class="pill udms">UDMS</span></td></tr>
+          <tr><td class="q">Departure and return dates</td><td>Hidden fields, taken from the package</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">How many travellers in your party?</td><td>Once a number is chosen, a room selector opens: number of rooms and guests per room. <strong>Single and Double only.</strong></td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Do you need flights?</td><td>Yes / No</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Any further requests?</td><td>Comments box</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Travelled with us before? Travel agent?</td><td>Yes / No</td><td><span class="pill fresh">Fresh</span></td></tr>
+          <tr><td class="q">Marketing communication preference</td><td>Email, WhatsApp, SMS</td><td><span class="pill fresh">Fresh</span></td></tr>
+        </table>
+      </div>
+
+      <h3>What happens after the client clicks submit</h3>
+      <ol class="steps">
+        <li><span class="n">1</span><div class="c"><b>The package is set up as a quoted package</b>The RWC package has a tick box in the website CMS that marks it as a quoted package. This is what switches the Quote Me form on.</div></li>
+        <li><span class="n">2</span><div class="c"><b>The client chooses rooms and guests</b>The form asks how many rooms and how many people in each room, Single or Double.</div></li>
+        <li><span class="n">3</span><div class="c"><b>Zapier maps the answers</b>The form fields are sent to the right fields in UDMS and Freshsales.</div></li>
+        <li><span class="n">4</span><div class="c"><b>UDMS tries to build the quote</b>UDMS reads the traveller and room details and creates the quote. An ED number is generated either way.</div></li>
+        <li><span class="n">5</span><div class="c"><b>Then, and only then, the enquiry lands in Fresh</b>Fresh waits for UDMS to respond, so the enquiry arrives with the right status and the ED number already in the <strong>ED Reference</strong> field.</div></li>
+      </ol>
+
+      <h3>The two possible outcomes</h3>
+      <div class="outcomes">
+        <div class="outcome a">
+          <h4>A · Quote sent</h4>
+          <ul>
+            <li>UDMS sends the quote to the client</li>
+            <li>The enquiry goes into the <strong>Quoted</strong> lifecycle in Fresh</li>
+            <li>It is auto-assigned to a consultant</li>
+            <li>ED Reference is filled in</li>
+            <li><strong>Your job:</strong> follow up on the quote the client already has</li>
+          </ul>
+        </div>
+        <div class="outcome b">
+          <h4>B · No quote sent</h4>
+          <ul>
+            <li>UDMS couldn't create the quote</li>
+            <li>The enquiry goes into a separate lifecycle in Fresh for unquoted RWC enquiries</li>
+            <li>It is still auto-assigned to a consultant</li>
+            <li>ED Reference is still filled in</li>
+            <li><strong>Your job:</strong> pick it up and handle the quote manually</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout info">
+        <strong class="t">RWC Quote Me enquiries do not appear as New</strong>
+        <p>Either outcome lands the enquiry straight in its own lifecycle, already assigned. If you're looking for one in New, you won't find it there.</p>
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="waitlist">
+      <h2><span class="num">07</span>Waitlist form</h2>
+      <p class="sub">Sends to Freshsales · lands straight in Waitlist</p>
+      <p>The Waitlist form is not a request for a quote. It holds the client's place in line for an event until spaces open up.</p>
+      <div class="rules">
+        <div class="rule"><b>Shares: event name</b><span>So you know which event the client is waiting on.</span></div>
+        <div class="rule"><b>Shares: travellers</b><span>The number of people in the client's party.</span></div>
+        <div class="rule"><b>Does not share: dates</b><span>No travel or event dates come through. That's by design.</span></div>
+      </div>
+      <div class="callout info">
+        <strong class="t">Waitlist enquiries do not appear as New</strong>
+        <p>They go straight into Waitlist in Fresh and stay there until the waitlist clears. If you're looking for one in New, you won't find it there.</p>
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="compare">
+      <h2><span class="num">08</span>Question by question</h2>
+      <p class="sub">Which enquiry form asks what. The Waitlist form is covered in <a href="#waitlist">section 07</a>.</p>
+      <div class="tablewrap">
+        <table class="matrix">
+          <tr><th>Question</th><th>General</th><th>Event Page</th><th>Package Enquiry</th><th>RWC Quote Me</th></tr>
+          <tr><td class="q">Title</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="yes">Asked</td></tr>
+          <tr><td class="q">Name, email, phone</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td></tr>
+          <tr><td class="q">Sport</td><td class="yes">Asked</td><td>Preselected</td><td>Hidden field</td><td class="no">No</td></tr>
+          <tr><td class="q">Event</td><td class="yes">Asked</td><td>Preselected</td><td>Hidden field</td><td class="no">No</td></tr>
+          <tr><td class="q">Event or package dates</td><td class="no">No</td><td>Sent automatically</td><td>Sent automatically</td><td>Sent automatically</td></tr>
+          <tr><td class="q">Package name &amp; URL</td><td class="no">No</td><td class="no">No</td><td>Sent automatically</td><td class="no">No</td></tr>
+          <tr><td class="q">Client's departure &amp; return dates</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td><td>Hidden field</td></tr>
+          <tr><td class="q">Number of travellers</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td><td>Asked, plus rooms</td></tr>
+          <tr><td class="q">Flights needed?</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td></tr>
+          <tr><td class="q">Further requests</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td></tr>
+          <tr><td class="q">Travelled with us before?</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td></tr>
+          <tr><td class="q">Travel agent?</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td></tr>
+          <tr><td class="q">Marketing preference</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td><td class="yes">Asked</td></tr>
+        </table>
+      </div>
+
+      <h3>Package combination options</h3>
+      <p>The Event Page and Package Enquiry forms include a drop-down for the client to say what they want included. The options are:</p>
+      <div class="chips" style="margin-bottom:8px;">
+        <span class="chip">Flights, Sport Tickets, Hotel, Transfers</span>
+        <span class="chip">Hotel, Sport Tickets, Transfers</span>
+        <span class="chip">Flight, Hotel, Sport Tickets</span>
+        <span class="chip">Hotel, Sport Tickets</span>
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="options">
+      <h2><span class="num">09</span>Sport and event options</h2>
+      <p class="sub">The lists the client chooses from on the General and Event Page forms</p>
+      <div class="sports">
+<div class="sport"><h4>Rugby<small>16 options</small></h4><div class="chips"><span class="chip">Rugby World Cup 2027</span><span class="chip">Autumn Internationals</span><span class="chip">Incoming Series</span><span class="chip">Rugby Championship</span><span class="chip">Nations Championship</span><span class="chip">RWC Sevens</span><span class="chip">Six Nations</span><span class="chip">Rugby&#x27;s Greatest Rivalry</span><span class="chip">Africa Men&#x27;s Sevens</span><span class="chip">Cape Town Sevens</span><span class="chip">Dubai Sevens</span><span class="chip">Hong Kong Sevens</span><span class="chip">London Sevens</span><span class="chip">Madrid Sevens</span><span class="chip">Paris Sevens</span><span class="chip">Singapore Sevens</span></div></div>
+<div class="sport"><h4>Football<small>14 options</small></h4><div class="chips"><span class="chip">AFCON</span><span class="chip">Bundesliga</span><span class="chip">Carabao Cup</span><span class="chip">Community Shield</span><span class="chip">La Liga</span><span class="chip">Ligue 1</span><span class="chip">FA Cup Final</span><span class="chip">English Premier League</span><span class="chip">Serie A</span><span class="chip">UEFA Champions League</span><span class="chip">UEFA Europa League</span><span class="chip">UEFA European Football Championship</span><span class="chip">UEFA Euros</span><span class="chip">World Cup 2026</span></div></div>
+<div class="sport"><h4>Formula One<small>25 options</small></h4><div class="chips"><span class="chip">Abu Dhabi Grand Prix</span><span class="chip">Australia Grand Prix</span><span class="chip">Austrian Grand Prix</span><span class="chip">Azerbaijan Grand Prix</span><span class="chip">Bahrain Grand Prix</span><span class="chip">Belgian Grand Prix</span><span class="chip">Brazil Grand Prix</span><span class="chip">British Grand Prix</span><span class="chip">Canada Grand Prix</span><span class="chip">Dutch Grand Prix</span><span class="chip">Hungarian Grand Prix</span><span class="chip">Imola Grand Prix</span><span class="chip">Monza Grand Prix</span><span class="chip">Grand Prix</span><span class="chip">Las Vegas Grand Prix</span><span class="chip">Miami Grand Prix</span><span class="chip">Monaco Grand Prix</span><span class="chip">Qatar Grand Prix</span><span class="chip">Saudi Arabia Grand Prix</span><span class="chip">China Grand Prix</span><span class="chip">Singapore Grand Prix</span><span class="chip">Catalunya Grand Prix</span><span class="chip">Mexico Grand Prix</span><span class="chip">Madrid Grand Prix</span><span class="chip">USA Grand Prix</span></div></div>
+<div class="sport"><h4>MotoGP<small>26 options</small></h4><div class="chips"><span class="chip">MotoGP Australia</span><span class="chip">MotoGP Austria</span><span class="chip">MotoGP Catalunya</span><span class="chip">MotoGP Assen</span><span class="chip">MotoGP Indian</span><span class="chip">MotoGP Japan</span><span class="chip">MotoGP Malaysia</span><span class="chip">MotoGP Portugal</span><span class="chip">MotoGP Qatar</span><span class="chip">MotoGP San Marino</span><span class="chip">MotoGP Saudi Arabia</span><span class="chip">MotoGP Jerez</span><span class="chip">MotoGP Thailand</span><span class="chip">MotoGP Germany</span><span class="chip">MotoGP British</span><span class="chip">MotoGP Valencia</span><span class="chip">MotoGP Aragon</span><span class="chip">MotoGP Indonesia</span><span class="chip">MotoGP Mugello</span><span class="chip">MotoGP Hungary</span><span class="chip">MotoGP Kazakhstan</span><span class="chip">MotoGP French</span><span class="chip">MotoGP Argentina</span><span class="chip">MotoGP LeMans</span><span class="chip">MotoGP Brazil</span><span class="chip">Isle of Man</span></div></div>
+<div class="sport"><h4>Tennis<small>7 options</small></h4><div class="chips"><span class="chip">Australian Open</span><span class="chip">Italian Open Tennis</span><span class="chip">Roland Garros</span><span class="chip">US Open Tennis</span><span class="chip">Wimbledon</span><span class="chip">Laver Cup</span><span class="chip">Madrid Open</span></div></div>
+<div class="sport"><h4>Golf<small>10 options</small></h4><div class="chips"><span class="chip">British Open</span><span class="chip">Nedbank Golf Challenge</span><span class="chip">The Masters Tournament</span><span class="chip">US Open Golf</span><span class="chip">Open Championship</span><span class="chip">Ryder Cup</span><span class="chip">Open Golf</span><span class="chip">PGA Championship</span><span class="chip">Presidents Cup</span><span class="chip">LIV Golf</span></div></div>
+<div class="sport"><h4>Cycling<small>1 option</small></h4><div class="chips"><span class="chip">Tour de France</span></div></div>
+<div class="sport"><h4>Cricket<small>5 options</small></h4><div class="chips"><span class="chip">Cricket World Cup 2027</span><span class="chip">ICC World Championships</span><span class="chip">T20 World Cup</span><span class="chip">ICC Champions Trophy</span><span class="chip">Indian Premier League</span></div></div>
+<div class="sport"><h4>Adventure Travel<small>5 options</small></h4><div class="chips"><span class="chip">Camino Walks</span><span class="chip">Hiking</span><span class="chip">Biking</span><span class="chip">Cycling</span><span class="chip">Walking</span></div></div>
+<div class="sport"><h4>Horse Racing<small>2 options</small></h4><div class="chips"><span class="chip">Cape Town Met</span><span class="chip">Durban July</span></div></div>
+<div class="sport"><h4>Other<small>10 options</small></h4><div class="chips"><span class="chip">UFC</span><span class="chip">School Tour</span><span class="chip">Concert</span><span class="chip">Flights Only</span><span class="chip">Leisure</span><span class="chip">London Marathon</span><span class="chip">Boston Marathon</span><span class="chip">Tokyo Marathon</span><span class="chip">Comrades Marathon</span><span class="chip">Other</span></div></div>
+</div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+    <section id="faq">
+      <h2><span class="num">10</span>Quick answers</h2>
+      <p class="sub">The questions that come up most</p>
+      <div class="faq">
+        <details>
+          <summary>Why does the General form ask for dates and flights?</summary>
+          <p>Because it isn't linked to an event or a package. Those qualifying questions are the only way we get the information needed to quote.</p>
+        </details>
+        <details>
+          <summary>Why doesn't the Package Enquiry form ask which package or event?</summary>
+          <p>It doesn't need to. The package name, URL, dates, sport type and event all come through to Fresh automatically as hidden fields.</p>
+        </details>
+        <details>
+          <summary>Why are the Yes / No answers blank when the form loads?</summary>
+          <p>So the client has to make a real choice. A pre-ticked default would land in Fresh looking like an answer the client never gave.</p>
+        </details>
+        <details>
+          <summary>Can the Quote Me form be added to other packages?</summary>
+          <p>No. It is tagged only to RWC 2027 packages. All other packages use the Package Enquiry form, which sends to Fresh only and doesn't create a UDMS quote.</p>
+        </details>
+        <details>
+          <summary>I can't find an RWC Quote Me enquiry in New. Where is it?</summary>
+          <p>It won't be in New. If UDMS sent the quote, it's in the Quoted lifecycle. If not, it's in the separate lifecycle for unquoted RWC enquiries. Either way it is already assigned to a consultant.</p>
+        </details>
+        <details>
+          <summary>Why does an RWC enquiry take a moment longer to appear in Fresh?</summary>
+          <p>Fresh waits for UDMS to respond first. That way the enquiry arrives in the right lifecycle with the ED Reference already filled in.</p>
+        </details>
+        <details>
+          <summary>Where do I find the UDMS ED number for an RWC enquiry?</summary>
+          <p>In the <strong>ED Reference</strong> field on the enquiry in Fresh. It is filled in whether or not the quote was sent.</p>
+        </details>
+        <details>
+          <summary>Why doesn't a Waitlist enquiry have any dates?</summary>
+          <p>The Waitlist form doesn't share dates. It only sends the event name and the number of travellers, because the client is waiting for space, not asking for a quote yet.</p>
+        </details>
+        <details>
+          <summary>I can't find a Waitlist enquiry in New. Where is it?</summary>
+          <p>It goes straight to Waitlist and stays there until the waitlist clears.</p>
+        </details>
+        <details>
+          <summary>Can we add, remove or rename a question on a form?</summary>
+          <p>Every question is mapped to a field in Fresh (and for RWC, in UDMS) through Zapier. Changing a question changes what lands in Fresh, so any change has to be planned across all of these, not just on the website.</p>
+        </details>
+      </div>
+      <a class="backtop" href="#top">↑ Back to top</a>
+    </section>
+
+  </div>
+
+  <footer>Edusport Travel and Tours · How Our Enquiry Forms Work · Internal Use Only</footer>
+</div>
+<script>
+  try { if (window.self !== window.top) document.documentElement.classList.add('framed'); }
+  catch (e) { document.documentElement.classList.add('framed'); }
+</script>
+</body>
+</html>
